@@ -1,0 +1,205 @@
+import java.util.logging.Logger;
+
+/**
+*Employee_Main_class
+*/
+
+
+public class Employee_Main_class {
+
+private static final Logger logger=Logger.getLogger(Employee_Main_class.class.getName());
+    public static void main(String[] args) {
+        Employee employee = new Employee();
+        employee.setFirstName("  Bhavana ");
+        employee.setLastName("Sanagala");
+        employee.setMiddleName("A.");
+        employee.setDepartment("Technology");
+        employee.setDesignation("Software Engineer");
+        employee.setLocation("New York");
+        employee.setEmployeeID("IS10001");
+        employee.setJoiningDate("2022-03-15");
+        employee.setTerminationDate("2024-10-15");
+
+       System.out.println(employee);
+    }
+}
+
+class Employee {
+
+/**
+* All the fields, getters, setters, and the toString() method go here.
+*/
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private String department;
+    private String designation;
+    private String location;
+    private String employeeID;
+    private String joiningDate;
+    private String terminationDate;
+
+/**
+* Getters and Setters
+*/
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+/**
+*firstName
+*/
+    public void setFirstName(String firstName) {
+        if (firstName != null && firstName.trim().length() <= 75) {
+            this.firstName = firstName.trim();
+        } else {
+            System.out.println("Validation failed: First name should be less than or equal to 75 characters without leading/trailing whitespaces.");
+        }
+    }
+
+/**
+*LastName
+*/
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        if (lastName != null && lastName.trim().length() <= 75) {
+            this.lastName = lastName.trim();
+        } else {
+           System.out.println("Validation failed: Last name should be less than or equal to 75 characters without leading/trailing whitespaces.");
+        }
+    }
+
+/**
+*MiddleName
+*/
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        if (middleName != null && middleName.trim().length() <= 75) {
+            this.middleName = middleName.trim();
+        } else {
+           System.out.println("Validation failed: Middle name should be less than or equal to 75 characters without leading/trailing whitespaces.");
+        }
+    }
+
+/**
+*Department
+*/
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        String[] validDepartments = {"Technology", "Sales", "HR", "Finance", "Admin", "Talent Acquisition Teams"};
+        boolean isValid = false;
+
+        for (String dept : validDepartments) {
+            if (dept.equals(department)) {
+                isValid = true;
+                break;
+            }
+        }
+
+        if (isValid) {
+            this.department = department;
+        } else {
+           System.out.println("Validation failed: Department must be one of Technology, Sales, HR, Finance, Admin, Talent Acquisition Teams.");
+        }
+    }
+
+/**
+*Designation
+*/
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+/**
+*location
+*/
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+/**
+*EmployeeID
+*/
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        if (employeeID.matches("IS1\\d{4}")) {
+            this.employeeID = employeeID;
+        } else {
+            System.out.println("Validation failed: Employee ID should be in the format 'IS1xxxx' where xxxx are digits.");
+        }
+    }
+
+/**
+*JoiningDate
+*/
+
+    public String getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(String joiningDate) {
+        if (joiningDate != null && Integer.parseInt(joiningDate.split("-")[0]) > 2000) {
+            this.joiningDate = joiningDate;
+        } else {
+           System.out.println("Validation failed: Joining date should be greater than the year 2000.");
+        }
+    }
+
+/**
+*terminationData
+*/
+    public String getTerminationDate() {
+        return terminationDate;
+    }
+
+    public void setTerminationDate(String terminationDate) {
+        if (terminationDate != null && this.joiningDate != null) {
+            if (terminationDate.compareTo(joiningDate) > 0) {
+                this.terminationDate = terminationDate;
+            } else {
+                System.out.println("Validation failed: Termination date should be after the joining date.");
+            }
+        } else {
+          System.out.println("Validation failed: Termination date and joining date cannot be null.");
+        }
+    }
+
+/**
+*tostring method
+*/
+    @Override
+    public String toString() {
+        return "Employee {" +
+                "First Name='" + firstName + '\'' +
+                ", Last Name='" + lastName + '\'' +
+                ", Middle Name='" + middleName + '\'' +
+                ", Department='" + department + '\'' +
+                ", Designation='" + designation + '\'' +
+                ", Location='" + location + '\'' +
+                ", Employee ID='" + employeeID + '\'' +
+                ", Joining Date='" + joiningDate + '\'' +
+                ", Termination Date='" + terminationDate + '\'' +
+                '}';
+    }
+}
